@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "horsegame"
+    }
+  },
+  "defaultProject": "horsegame",
+  "cli": {
+    "analytics": false
+  }
 }
