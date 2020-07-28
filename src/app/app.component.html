@@ -69,7 +69,7 @@
 </table>
 
 <div class="mx-5 mb-2" *ngFor="let r of raceStartInfo; let i = index">
-  <div class="row" (click)="tabView = !tabView">
+  <div class="row" (click)="selectedHorse = r.horse.id">
     <div class="col-1">
       <p>StartNo: {{ r.number }}</p>
     </div>
@@ -84,7 +84,7 @@
       <!-- <i class="fa fa-arrow-down"></i> -->
     </div>
   </div>
-  <div *ngIf="tabView">
+  <div *ngIf="selectedHorse === r.horse.id">
     <div class="row" *ngFor="let h of findHorseDetails(r)">
       <div class="col-3">
         Trainer:

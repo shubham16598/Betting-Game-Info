@@ -14,6 +14,7 @@ export class AppComponent {
   upcoming = [];
   gameInfo = {};
   raceStartInfo = [];
+  selectedHorse = 0;
 
   selectedGame: string = '';
   testValue: string = 'V75';
@@ -65,11 +66,15 @@ export class AppComponent {
   }
 
   findHorseDetails(r) {
+    console.log(r.horse.id);
     return this.raceStartInfo.filter((x) => x.number == r.number);
-    console.log(r);
   }
   onChange(e) {
     let i = e;
     console.log(i.toString());
+    this.apiService.getGameID(i.toString()).subscribe((data) => {
+      this.results = data['results'];
+      this.upcoming = data['upcoming'];
+    });
   }
 }
