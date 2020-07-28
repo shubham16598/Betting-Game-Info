@@ -10,14 +10,15 @@ import { ApiService } from './api.service';
 })
 export class AppComponent {
   title = 'horsegame';
-  results = [];
-  upcoming = [];
+  results: any  = [];
+  upcoming: any  = [];
   gameInfo = {};
-  raceStartInfo = [];
+  gameRaces: any = [];
+  raceStartInfo: any =  [];
   selectedHorse = 0;
 
   selectedGame: string = '';
-  testValue: string = 'V75';
+  
   gameId: string = '';
   tabView: boolean = false;
   value: number = 0;
@@ -31,21 +32,22 @@ export class AppComponent {
   gotoHome() {
     this.router.navigate(['/newpage']);
   }
-  getData() {
-    this.apiService.getGameID(this.testValue).subscribe((data) => {
-      this.results = data['results'];
-      this.upcoming = data['upcoming'];
-      console.log(this.results);
-      console.log(this.upcoming);
-    });
-  }
+  // getData() {
+  //   this.apiService.getGameID(this.testValue).subscribe((data) => {
+  //     this.results = data['results'];
+  //     this.upcoming = data['upcoming'];
+  //     console.log(this.results);
+  //     console.log(this.upcoming);
+  //   });
+  // }
 
   getID(id) {
     console.log(id);
     this.gameId = id;
     this.apiService.getGameData(this.gameId).subscribe((data) => {
       this.gameInfo = data;
-      console.log(data);
+      console.log(data['races']);
+      this.gameRaces = this.gameInfo['races'];
     });
   }
 
@@ -71,7 +73,6 @@ export class AppComponent {
   }
   onChange(e) {
     let i = e;
-    console.log(i.toString());
     this.apiService.getGameID(i.toString()).subscribe((data) => {
       this.results = data['results'];
       this.upcoming = data['upcoming'];
